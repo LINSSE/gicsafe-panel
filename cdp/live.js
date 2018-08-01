@@ -30,8 +30,8 @@
 					var row = sheet.last();
 					var reg = data[i];
 					row.append('<div class="col-md-2">'+reg.timestamp+'</div>')
-					row.append('<div class="col-md-2">'+reg.topic+'</div>')
-					row.append('<div class="col-md-8">'+reg.payload+'</div>')
+					row.append('<div class="col-md-3">'+reg.topic+'</div>')
+					row.append('<div class="col-md-7">'+reg.payload+'</div>')
 				}
 
 				sheet.show("fade");

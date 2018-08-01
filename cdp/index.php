@@ -31,9 +31,9 @@
         <div class="row">
             <div class="col-md-2">
                 <h4>fecha</h4></div>
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <h4>dispositivo </h4></div>
-            <div class="col-md-8">
+            <div class="col-md-7">
                 <h4>mensaje</h4></div>
         </div>
         <div class="row" id="sheet">
