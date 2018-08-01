@@ -14,6 +14,7 @@
 				console.log('update');
 				$.get('live.php',{},function(data){
 					console.log(data);
+					data.reverse();
 					fill(data);
 				})
 			}

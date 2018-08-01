@@ -13,7 +13,7 @@
 			function update(){
 				console.log('update');
 				$.get('live.php',{},function(data){
-
+					data.reverse();
 					fill(data);
 				})
 			}
