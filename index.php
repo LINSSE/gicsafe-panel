@@ -85,6 +85,7 @@ while ($res = $resultado->fetch_assoc())
             </div>
             <div class="col-md-3">
                 <?php echo $res['sl'];?>
+                <i class="glyphicon glyphicon-signal"></i>
         </div>
     </div>
 <?php }?>
