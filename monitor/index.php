@@ -19,8 +19,8 @@
                 </div>
                <div class="collapse navbar-collapse" id="navcol-1">
                     <ul class="nav navbar-nav">
-                        <li class="active" role="presentation"><a href="../">Inicio </a></li>
-                        <li role="presentation"><a href="#">Registros Dimba </a></li>
+                        <li  role="presentation"><a href="../">Inicio </a></li>
+                        <li class="active" role="presentation"><a href="#">Registros Dimba </a></li>
                         <li role="presentation"><a href="../cdp">Registros Contador </a></li>
                     </ul>
                 </div>
