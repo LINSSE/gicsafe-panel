@@ -17,10 +17,11 @@
                 <div class="navbar-header"><a class="navbar-brand navbar-link" href="#">Contador de Pasajeros</a>
                     <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
                 </div>
-                <div class="collapse navbar-collapse" id="navcol-1">
+               <div class="collapse navbar-collapse" id="navcol-1">
                     <ul class="nav navbar-nav">
-                        <li class="active" role="presentation"><a href="#">Inicio </a></li>
-                        <li role="presentation"><a href="#">Configuracion </a></li>
+                        <li class="active" role="presentation"><a href="../">Inicio </a></li>
+                        <li role="presentation"><a href="../monitor">Registros Dimba </a></li>
+                        <li role="presentation"><a href="#">Registros Contador </a></li>
                     </ul>
                 </div>
             </div>

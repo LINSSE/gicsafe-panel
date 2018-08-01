@@ -10,7 +10,7 @@ if ($mysqli->connect_errno) {
 }
 
 
-$sql = "SELECT * FROM dispositivos" ;
+$sql = "SELECT *, FLOOR((TIME_TO_SEC(CURRENT_TIMESTAMP) - TIME_TO_SEC(fecha))/60) AS `minutes` from dispositivos" ;
 if (!$resultado = $mysqli->query($sql)) {
    
     echo "Error: La ejecución de la consulta falló debido a: \n";
@@ -46,7 +46,8 @@ if (!$resultado = $mysqli->query($sql)) {
                 <div class="collapse navbar-collapse" id="navcol-1">
                     <ul class="nav navbar-nav">
                         <li class="active" role="presentation"><a href="#">Inicio </a></li>
-                        <li role="presentation"><a href="#">Configuracion </a></li>
+                        <li role="presentation"><a href="monitor">Registros Dimba </a></li>
+                        <li role="presentation"><a href="cdp">Registros Contador </a></li>
                     </ul>
                 </div>
             </div>
@@ -76,10 +77,11 @@ while ($res = $resultado->fetch_assoc())
                <?php echo $res['device_id'];?>
                </div>
             <div class="col-md-3">
-            
+                Espora
             </div>
             <div class="col-md-3">
                 <?php echo $res['fecha'];?>
+                <span class="text-muted">(hace <?php echo $res['minutes']?> minutos)</span>
             </div>
             <div class="col-md-3">
                 <?php echo $res['sl'];?>
