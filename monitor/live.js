@@ -29,9 +29,9 @@
 					sheet.append('<div class="row"></div>');
 					var row = sheet.last();
 					var reg = data[i];
-					row.append('<div class="col-md-1">'+reg.timestamp+'</div>')
+					row.append('<div class="col-md-2">'+reg.timestamp+'</div>')
 					row.append('<div class="col-md-1">'+reg.topic+'</div>')
-					row.append('<div class="col-md-10">'+reg.payload+'</div>')
+					row.append('<div class="col-md-9">'+reg.payload+'</div>')
 				}
 
 				sheet.show("fade");

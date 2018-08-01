@@ -11,7 +11,7 @@ if ($mysqli->connect_errno) {
 }
 
 
-$sql = "SELECT * FROM dimba order by timestamp desc limit 0,500" ;
+$sql = "SELECT * FROM dimba order by timestamp asc limit 0,500" ;
 if (!$resultado = $mysqli->query($sql)) {
    
     echo "Error: La ejecución de la consulta falló debido a: \n";
