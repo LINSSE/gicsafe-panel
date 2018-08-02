@@ -20,25 +20,28 @@
                <div class="collapse navbar-collapse" id="navcol-1">
                     <ul class="nav navbar-nav">
                         <li  role="presentation"><a href="../">Inicio </a></li>
-                        <li class="active" role="presentation"><a href="#">Registros Dimba </a></li>
-                        <li role="presentation"><a href="../cdp">Registros Contador </a></li>
+                        <li class="active" role="presentation"><a href="#">Monitor de Barreras </a></li>
+                        <li role="presentation"><a href="../cdp">Contador de Pasajeros</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
 
     
-        <div class="row">
-            <div class="col-md-2">
-                <h4>fecha</h4></div>
-            <div class="col-md-1">
-                <h4>dispositivo </h4></div>
-            <div class="col-md-9">
-                <h4>mensaje</h4></div>
-        </div>
-        <div class="row" id="sheet">
-            
-        </div>
+       <div class="table-responsive">
+    <table class="table table-striped table-bordered table-hover table-condensed">
+        <thead>
+            <tr>
+                <th class="col-md-2">Fecha</th>
+                <th>Dispositivo</th>
+                <th>Mensaje</th>
+            </tr>
+        </thead>
+        <tbody id="sheet">
+           <!-- contenido dinamic -->
+        </tbody>
+    </table>
+</div>
        
     <script src="../assets/js/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>

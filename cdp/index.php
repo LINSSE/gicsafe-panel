@@ -20,8 +20,8 @@
                <div class="collapse navbar-collapse" id="navcol-1">
                     <ul class="nav navbar-nav">
                         <li role="presentation"><a href="../">Inicio </a></li>
-                        <li role="presentation"><a href="../monitor">Registros Dimba </a></li>
-                        <li class="active"  role="presentation"><a href="#">Registros Contador </a></li>
+                        <li role="presentation"><a href="../monitor">Monitor de Barreras </a></li>
+                        <li class="active"  role="presentation"><a href="#">Contador de Pasajeros</a></li>
                     </ul>
                 </div>
             </div>

@@ -26,16 +26,17 @@
 
 
 				for (var i = data.length - 1; i >= 0; i--) {
-					sheet.append('<div class="row"></div>');
-					var row = sheet.last();
+					// sheet.append('<div class="row"></div>');
+					// var row = sheet.last();
 					var reg = data[i];
-					row.append('<div class="col-md-2">'+reg.timestamp+'</div>')
-					row.append('<div class="col-md-1">'+reg.topic+'</div>')
-					row.append('<div class="col-md-9">'+reg.payload+'</div>')
+					
+					sheet.append('<tr><td><b>'+reg.timestamp+'</b></td><td>'+reg.topic+'</td><td>'+reg.payload+'</td></tr>')
+					
+					
+
 				}
 
 				sheet.show("fade");
-
 			}
 
 		})
