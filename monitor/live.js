@@ -59,7 +59,33 @@ String.prototype.toHHMMSS = function () {
 				for (var i = data.length - 1; i >= 0; i--) {
 					
 					var reg = data[i];
-					tabla.append('<tr><td><b>'+reg.fecha+'</b></td><td>'+reg.d1+'</td><td>'+reg.d2+'</td><td>'+reg.d3+'</td><td>'+reg.binario+'</td><td>obs</td><td>'+(reg.duracion+"").toHHMMSS()+' </td></tr>')
+
+					// convertir a los estados de Martin
+					var state;
+
+					switch(reg.binario)
+					{
+						case 2:
+						state = 0;
+						break;
+						case 6:
+						state = 1;
+						break;
+						case 7:
+						state = 2;
+						break;
+						case 5:
+						state = 3;
+						break;
+						case 1:
+						state = 4;
+						break;
+						default:
+						state = "null";
+						break;
+
+					}
+					tabla.append('<tr><td><b>'+reg.fecha+'</b></td><td>'+reg.d1+'</td><td>'+reg.d2+'</td><td>'+reg.d3+'</td><td>'+state+'</td><td>obs</td><td>'+(reg.duracion+"").toHHMMSS()+' </td></tr>')
 				
 				}
 
