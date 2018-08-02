@@ -1,3 +1,16 @@
+///prototypo para formato de hora
+String.prototype.toHHMMSS = function () {
+    var sec_num = parseInt(this, 10); // don't forget the second param
+    var hours   = Math.floor(sec_num / 3600);
+    var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
+    var seconds = sec_num - (hours * 3600) - (minutes * 60);
+
+    if (hours   < 10) {hours   = "0"+hours;}
+    if (minutes < 10) {minutes = "0"+minutes;}
+    if (seconds < 10) {seconds = "0"+seconds;}
+    return hours+':'+minutes+':'+seconds;
+}
+
 
 		$(document).ready(function(){
 
@@ -46,7 +59,7 @@
 				for (var i = data.length - 1; i >= 0; i--) {
 					
 					var reg = data[i];
-					tabla.append('<tr><td><b>'+reg.fecha+'</b></td><td>'+reg.d1+'</td><td>'+reg.d2+'</td><td>'+reg.d3+'</td><td>'+reg.binario+'</td><td>obs</td><td>'+reg.duracion+' </td></tr>')
+					tabla.append('<tr><td><b>'+reg.fecha+'</b></td><td>'+reg.d1+'</td><td>'+reg.d2+'</td><td>'+reg.d3+'</td><td>'+reg.binario+'</td><td>obs</td><td>'+(reg.duracion+"").toHHMMSS()+' </td></tr>')
 				
 				}
 
