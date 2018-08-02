@@ -79,6 +79,8 @@ String.prototype.toHHMMSS = function () {
 						break;
 						case "1":
 						state = "4";
+						case "3":
+						state = "5";
 						break;
 						default:
 						state = "null";
