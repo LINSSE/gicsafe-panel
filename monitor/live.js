@@ -25,7 +25,7 @@
 				if($("#tablaSensorDigital").length){
 					////existe
 					device = $("#tablaSensorDigital").attr("device");
-					console.log('digital_update');
+					console.log('digital_update: '+device);
 					$.get('graphapi.php',{device_id:device,type:"digital"},function(data)
 					{
 						data.reverse();
@@ -37,7 +37,24 @@
 
 			function fillRegistroDigital(data)
 			{
-				console.log("infill digital")
+				
+				var tabla = $("#tablaSensorDigital");
+				tabla.hide("fade");
+				tabla.html("");//limpio
+
+
+				for (var i = data.length - 1; i >= 0; i--) {
+					
+					var reg = data[i];
+					tabla.append('<tr><td><b>'+reg.fecha+'</b></td><td>'+reg.d1+'</td><td>'+reg.d2+'</td><td>'+reg.d3+'</td><td>'+reg.binario+'</td><td>obs</td><td>'+Math.floor(reg.duracion/1000)+'</td></tr>')
+				
+				}
+
+				tabla.show("fade");
+
+
+
+
 			}
 
 			function fill(data)

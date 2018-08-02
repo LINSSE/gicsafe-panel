@@ -1,13 +1,13 @@
 <?php 
 
 $device_id = $_GET['device_id'];
-$query = $_GET['query'];
+$type = $_GET['type'];
 
 
 header('Content-Type: application/json');
 // DIMBA
 
-$mysqli = new mysqli('127.0.0.1', 'root', '', 'dimba');
+$mysqli = new mysqli('127.0.0.1', 'root', '', 'gicsafe');
 
 
 ///CONEXION A BASE DE DATOS
@@ -19,13 +19,15 @@ if ($mysqli->connect_errno) {
 
 //CONSULTA
 
-switch ($query) {
-	case 'historicodigital'://historico de los cambios de los sensores digitales de la barrera
+switch ($type) {
+	case 'digital'://historico de los cambios de los sensores digitales de la barrera
 		$sql = "
-		SELECT id, d1,d2,d3, (d1 * 4 + d2 * 2 + d3 * 1) as binario
+		SELECT id, d1,d2,d3, (d1 * 4 + d2 * 2 + d3 * 1) as binario, fecha, duracion
 		FROM `registrodigital` 
 		where device_id = $device_id
-		ORDER BY `id`  DESC" ;		
+		ORDER BY `id`  DESC
+		limit 0,1000
+		" ;		
 	break;
 	
 	default:
