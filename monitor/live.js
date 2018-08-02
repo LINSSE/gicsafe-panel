@@ -65,20 +65,20 @@ String.prototype.toHHMMSS = function () {
 
 					switch(reg.binario)
 					{
-						case 2:
-						state = 0;
+						case "2":
+						state = "0";
 						break;
-						case 6:
-						state = 1;
+						case "6":
+						state = "1";
 						break;
-						case 7:
-						state = 2;
+						case "7":
+						state = "2";
 						break;
-						case 5:
-						state = 3;
+						case "5":
+						state = "3";
 						break;
-						case 1:
-						state = 4;
+						case "1":
+						state = "4";
 						break;
 						default:
 						state = "null";
