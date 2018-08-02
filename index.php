@@ -74,7 +74,8 @@ while ($res = $resultado->fetch_assoc())
 
         <div class="row">
             <div class="col-md-3">
-               <?php echo $res['device_id'];?>
+
+               <?php echo '<a href="monitor?device_id='.$res['device_id'].'">'.$res['device_id'].'</a>';?>
                </div>
             <div class="col-md-3">
                 Espora

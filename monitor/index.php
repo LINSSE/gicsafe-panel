@@ -27,8 +27,16 @@
             </div>
         </nav>
 
-    
-       <div class="table-responsive">
+        <!-- aca puedo poner para seleccionar el dispositvo para ir a ver los registros -->
+
+
+
+
+<?php
+if (!isset($_GET['device_id'])) 
+{
+?>
+<div class="table-responsive">
     <table class="table table-striped table-bordered table-hover table-condensed">
         <thead>
             <tr>
@@ -38,15 +46,46 @@
             </tr>
         </thead>
         <tbody id="sheet">
-           <!-- contenido dinamic -->
+           <!-- contenido dinamico aca -->
         </tbody>
     </table>
 </div>
+<?php
+} else {
+    
+// Graficos por defecto
+?>
+<div class="table-responsive">
+    <table class="table table-striped table-bordered table-hover table-condensed">
+        <thead>
+            <tr>
+                <th class="col-md-2">Fecha</th>
+                <th>CV</th>
+                <th>BB</th>
+                <th>BL</th>
+                <th>Estado</th>
+                <th>Observacion</th>
+                <th>Duracion</th>
+            </tr>
+        </thead>
+        <tbody id="tablaSensorDigital" device="<?php echo $_GET['device_id']?>">
+           <!-- contenido dinamico aca -->
+        </tbody>
+    </table>
+</div>
+
+
+
+<?php }
+
+?>
+    
+
        
     <script src="../assets/js/jquery.min.js"></script>
+    <script type="text/javascript" src="live.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="live.js"></script>
 </body>
 
 </html>
