@@ -15,7 +15,7 @@ String.prototype.toHHMMSS = function () {
 		$(document).ready(function(){
 
 			update();
-
+			DigitalUpdate();
 
 			setInterval(function(){
 				update();
@@ -23,6 +23,13 @@ String.prototype.toHHMMSS = function () {
 			},60000);
 
 
+			// setInterval(function(){
+			// 	DigitalUpdate();
+
+			// },300000);
+
+
+			
 			function update(){
 				if($("#sheet").length)
 				{
@@ -33,8 +40,10 @@ String.prototype.toHHMMSS = function () {
 					})
 				}
 
+			}
 
-				///selectores
+			function DigitalUpdate(){
+					///selectores
 				if($("#tablaSensorDigital").length){
 					////existe
 					device = $("#tablaSensorDigital").attr("device");
@@ -45,7 +54,6 @@ String.prototype.toHHMMSS = function () {
 						fillRegistroDigital(data);
 					})
 				}
-
 			}
 
 			function fillRegistroDigital(data)
@@ -62,37 +70,114 @@ String.prototype.toHHMMSS = function () {
 
 					// convertir a los estados de Martin
 					var state;
+					var clase;
 
-					switch(reg.binario)
+					switch(parseInt(reg.binario))
 					{
-						case "2":
-						state = "0";
-						break;
-						case "6":
-						state = "1";
-						break;
-						case "7":
-						state = "2";
-						break;
-						case "5":
-						state = "3";
-						break;
-						case "1":
-						state = "4";
-						case "3":
-						state = "5";
-						break;
-						default:
-						state = "null";
-						break;
+					case 2:
+					if(state!=5)
+						{
+							obs = "Vacia+Alta"
+							clase="active"
+						}
+						else
+							{
+													clase="warning"
+								obs = "Anomalia Detectada (Vacia+Alta)";
+							}
+
+					state = 0;
+					break;
+					case 6:
+					if(state!=0)
+						{
+							obs = "Ocupada+Alta"
+							clase="primary"
+						}
+						else
+							{
+					clase="danger"
+								obs = "Anomalia Detectada (Ocupada+Alta)";
+							}
+
+					state = 1;
+					break;
+					case 7:
+					if(state!=1)
+						{
+							obs = "Bajando"
+							clase="secondary"
+						}
+						else
+							{
+					clase="danger"
+								obs = "Anomalia Detectada (Bajando)";
+							}
+
+					state = 2;
+					break;
+					case 5:
+					if(state!=2)
+						{clase="success"
+							obs = "Ocupada+Baja"
+							
+						}
+						else
+							{
+					clase="danger"
+								obs = "Anomalia Detectada (Ocupada+Baja)";
+							}
+
+					state = 3;
+					break;
+					case 1:
+					if(state!=3)
+						{clase="info"
+							obs = "Vacia+Baja"
+							
+						}
+						else
+							{
+					clase="danger"
+								obs = "Anomalia Detectada (Vacia+Baja)";
+							}
+
+					state = 4;
+					break;
+					case 3:
+					if(state!=4)
+						{
+							clase="warning"
+							obs = "Subiendo"
+							
+						}
+						else
+							{
+					clase="danger"
+								obs = "Anomalia Detectada (Subiendo)";
+							}
+
+					state = 5;
+					break;
+					default:
+					obs = "Error";
+						clase="danger"
+					state = null;
+					break;
 
 					}
-					tabla.append('<tr><td><b>'+reg.fecha+'</b></td><td>'+reg.d1+'</td><td>'+reg.d2+'</td><td>'+reg.d3+'</td><td>'+state+'</td><td>obs</td><td>'+(reg.duracion+"").toHHMMSS()+' </td></tr>')
+
+					// var clase=" ";
+					// if (obs.includes("Anomalia Detectada") || obs.includes("Error") ) 
+					// {
+					// 	// clase = "red";
+					// }
+					tabla.append('<tr class="'+clase+'"><td><b>'+reg.fecha+'</b></td><td>'+reg.d1+'</td><td>'+reg.d2+'</td><td>'+reg.d3+'</td><td>'+state+'</td><td>'+obs+'</td><td>'+(reg.duracion+"").toHHMMSS()+' </td></tr>')
 				
 				}
 
 				tabla.show("fade");
-
+				bindfilter();
 
 
 
@@ -113,6 +198,17 @@ String.prototype.toHHMMSS = function () {
 				}
 
 				sheet.show("fade");
+			}
+
+			// bind filter
+
+			function bindfilter(){
+				 $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#tablaSensorDigital tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
 			}
 
 		})

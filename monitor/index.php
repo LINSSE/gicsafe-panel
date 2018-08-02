@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DIMBA</title>
+    <title>MONITOR DE BARRERAS</title>
     <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/styles.css">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -55,8 +55,12 @@ if (!isset($_GET['device_id']))
     
 // Graficos por defecto
 ?>
+<h2>Reporte de Estados del Monitor de Barreras:</h2><h3><?php echo $_GET['device_id']?></h3>
+  <p>Tipea en el buscador para encontrar un estado o fecha en particular</p>  
+  <input class="form-control" id="myInput" type="text" placeholder="por Ejemplo Tipea..Anomalía">
+  <br>
 <div class="table-responsive">
-    <table class="table table-striped table-bordered table-hover table-condensed">
+    <table class="table">
         <thead>
             <tr>
                 <th class="col-md-2">Fecha</th>
