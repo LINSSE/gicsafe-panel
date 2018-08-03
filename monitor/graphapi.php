@@ -26,7 +26,7 @@ switch ($type) {
 		FROM `registrodigital` 
 		where device_id = $device_id
 		ORDER BY `id`  DESC
-		limit 0,5000
+		limit 0,1000
 		" ;		
 	break;
 	

@@ -50,7 +50,7 @@ String.prototype.toHHMMSS = function () {
 					console.log('digital_update: '+device);
 					$.get('graphapi.php',{device_id:device,type:"digital"},function(data)
 					{
-						data.reverse();
+						// data.reverse();
 						fillRegistroDigital(data);
 					})
 				}
@@ -75,24 +75,24 @@ String.prototype.toHHMMSS = function () {
 					switch(parseInt(reg.binario))
 					{
 					case 2:
-					if(state!=5)
+					if(state!=1)
 						{
 							obs = "Vacia+Alta"
 							clase="active"
 						}
 						else
 							{
-													clase="warning"
+													clase="danger"
 								obs = "Anomalia Detectada (Vacia+Alta)";
 							}
 
 					state = 0;
 					break;
 					case 6:
-					if(state!=0)
+					if(state!=2)
 						{
 							obs = "Ocupada+Alta"
-							clase="primary"
+							clase="active"
 						}
 						else
 							{
@@ -103,10 +103,10 @@ String.prototype.toHHMMSS = function () {
 					state = 1;
 					break;
 					case 7:
-					if(state!=1)
+					if(state!=3)
 						{
 							obs = "Bajando"
-							clase="secondary"
+							clase="active"
 						}
 						else
 							{
@@ -117,8 +117,8 @@ String.prototype.toHHMMSS = function () {
 					state = 2;
 					break;
 					case 5:
-					if(state!=2)
-						{clase="success"
+					if(state!=4)
+						{clase="active"
 							obs = "Ocupada+Baja"
 							
 						}
@@ -131,8 +131,8 @@ String.prototype.toHHMMSS = function () {
 					state = 3;
 					break;
 					case 1:
-					if(state!=3)
-						{clase="info"
+					if(state!=5)
+						{clase="active"
 							obs = "Vacia+Baja"
 							
 						}
@@ -145,9 +145,9 @@ String.prototype.toHHMMSS = function () {
 					state = 4;
 					break;
 					case 3:
-					if(state!=4)
+					if(state!=0)
 						{
-							clase="warning"
+							clase="active"
 							obs = "Subiendo"
 							
 						}
