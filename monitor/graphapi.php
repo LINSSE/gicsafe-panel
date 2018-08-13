@@ -21,13 +21,23 @@ if ($mysqli->connect_errno) {
 
 switch ($type) {
 	case 'digital'://historico de los cambios de los sensores digitales de la barrera
-		$sql = "
-		SELECT id, d1,d2,d3, (d1 * 4 + d2 * 2 + d3 * 1) as binario, fecha, duracion
-		FROM `registrodigital` 
-		where device_id = $device_id
-		ORDER BY `id`  DESC
-		limit 0,1000
-		" ;		
+		// $sql = "
+		// SELECT id, d1,d2,d3, (d1 * 4 + d2 * 2 + d3 * 1) as binario, fecha, duracion
+		// FROM `registrodigital` 
+		// where device_id = $device_id
+		// ORDER BY `id`  DESC
+		// -- limit 0,1000
+		// " ;		
+	$sql = "
+	SELECT r.id, d1, d2, d3,  (d1 * 4 + d2 * 2 + d3 * 1) as binario, from_unixtime((ts+ IFNULL(c.correccion,0)),'%d-%m-%Y %T') as fecha,r.fecha as fechaLlegada ,ts as tsoriginal, (ts+ IFNULL(c.correccion,0)) as ts , duracion ,device_id  
+FROM registrodigital r
+LEFT JOIN configuraciones c
+on r.device_id = c.device
+where d1 != 9 and d2 != 9 and d3 != 9
+and r.device_id = $device_id
+ORDER BY ts DESC
+-- limit 0,100
+	";
 	break;
 	
 	default:

@@ -78,7 +78,7 @@ String.prototype.toHHMMSS = function () {
 					if(state!=1)
 						{
 							obs = "Vacia+Alta"
-							clase="active"
+							clase="info"
 						}
 						else
 							{
@@ -92,7 +92,7 @@ String.prototype.toHHMMSS = function () {
 					if(state!=2)
 						{
 							obs = "Ocupada+Alta"
-							clase="active"
+							clase="success"
 						}
 						else
 							{
@@ -106,7 +106,7 @@ String.prototype.toHHMMSS = function () {
 					if(state!=3)
 						{
 							obs = "Bajando"
-							clase="active"
+							clase="warning"
 						}
 						else
 							{
@@ -132,7 +132,7 @@ String.prototype.toHHMMSS = function () {
 					break;
 					case 1:
 					if(state!=5)
-						{clase="active"
+						{clase="info"
 							obs = "Vacia+Baja"
 							
 						}
@@ -167,11 +167,8 @@ String.prototype.toHHMMSS = function () {
 
 					}
 
-					// var clase=" ";
-					// if (obs.includes("Anomalia Detectada") || obs.includes("Error") ) 
-					// {
-					// 	// clase = "red";
-					// }
+					///corregir la fecha 
+					
 					tabla.append('<tr class="'+clase+'"><td><b>'+reg.fecha+'</b></td><td>'+reg.d1+'</td><td>'+reg.d2+'</td><td>'+reg.d3+'</td><td>'+state+'</td><td>'+obs+'</td><td>'+(reg.duracion+"").toHHMMSS()+' </td></tr>')
 				
 				}
