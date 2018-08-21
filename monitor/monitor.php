@@ -84,14 +84,15 @@ switch ($type) {
 	case 0:
 	case 1: //mostrar tabla de digitales
 		$sql = "
-	SELECT r.id, d1, d2, d3,  (d1 * 4 + d2 * 2 + d3 * 1) as binario, convert_tz(from_unixtime((ts+ IFNULL(c.correccion,0)),'%Y-%m-%d %T'),'-03:00','+00:00') as fecha,r.fecha as fechaLlegada ,ts as tsoriginal, (ts+ IFNULL(c.correccion,0)) as ts , duracion ,device_id  
+		SELECT r.id, d1, d2, d3,  (d1 * 4 + d2 * 2 + d3 * 1) as binario, addtime(from_unixtime((ts+ IFNULL(c.correccion,0)),'%Y-%m-%d %T'),'03:00:00') as fechax,r.fecha as fechaLlegada ,ts as tsoriginal, (ts+ IFNULL(c.correccion,0)) as ts , duracion ,device_id
 	FROM registrodigital r
 	LEFT JOIN configuraciones c
 	on r.device_id = c.device
 	where d1 != 9 and d2 != 9 and d3 != 9
 	and r.device_id = $monitor
-	and (from_unixtime((ts+ IFNULL(c.correccion,0)),'%Y-%m-%d')) like '%".$filter."%'
-	ORDER BY ts ASC";
+	having fechax like '%".$filter."%'  
+ORDER BY `fechaLlegada`  asc
+	";
 // echo $sql;
 if (!$resultado = $mysqli->query($sql)) {
    
@@ -104,6 +105,7 @@ if (!$resultado = $mysqli->query($sql)) {
 ?>
 <h2>Reporte de Estados del Monitor de Barreras :<?php echo $_GET['monitor']?></h2>
 <h3>Mostrando registros del dia: <?php echo $filter;?></h3>
+
 <form>
 	<input type="hidden" name="monitor" <?php echo 'value="'.$_GET['monitor'].'"';?>>
 	<input type="date" name="f" <?php echo 'value="'.date("Y-m-d").'"';?>>
@@ -129,8 +131,8 @@ while ($res = $resultado->fetch_assoc())
 {
 	$data[] = $res;
 }
-
-echo "<tbody";
+echo sizeof($data); 
+echo "<tbody>";
 $estado = "null";
 for ($i=0; $i < sizeof($data)-2; $i++) 
 { 
@@ -231,11 +233,10 @@ for ($i=0; $i < sizeof($data)-2; $i++)
 
 
 
-
 echo '<tr style="background-color:'.$color.'">';
 	?>
 
-                <td class="col-md-2"><?php echo $r['fecha']?></td>
+                <td class="col-md-2"><?php echo $r['fechax']?></td>
                 <td><?php echo $r['d1']?"Ocupado":"Desocupado";?></td>
                 <td><?php echo $r['d2']?"Bajo":"No Bajo";?></td>
                 <td><?php echo $r['d3']?"Alto":"No Alto";?></td>

@@ -81,7 +81,9 @@ if (!$resultado = $mysqli->query($sql)) {
         <?php
 
 while ($res = $resultado->fetch_assoc()) 
-{?>
+{
+$device_id = $res['device_id'];
+    ?>
    
 
 
@@ -99,7 +101,7 @@ while ($res = $resultado->fetch_assoc())
                
             </td>
             <td scope="col">
-                <?php echo '<a href="monitor/monitor.php?monitor='.$res['device_id'].'">'.$res['device_id'].'</a>';?>
+                <?php echo '<a href="monitor/monitor.php?monitor='.$device_id.'">'.$device_id.'</a>';?>
                
         </td>
 
@@ -112,21 +114,111 @@ while ($res = $resultado->fetch_assoc())
                 <div class="row">
 
                     <?php
-                    // $q = "SELECT sensor, avg(value) from (SELECT * from analogicos where device_id = $res['device_id']
-                    //             order by id desc
-                    //             limit 0, 50) as a GROUP by sensor";
+                        
+                    $query_config = "SELECT * from configuraciones where device = $device_id";
+                    $config = $mysqli->query($query_config);
+                    $config = $config->fetch_assoc();                    
 
+
+                    $query_analogico = "SELECT device_id, sensor, value 
+                                        from analogicos
+                                        where device_id = $device_id
+                                        and sensor = 3
+                                        ORDER by ts desc 
+                                        LIMIT 0,1";
+                    $sensor = $mysqli->query($query_analogico);
+                    $sensor = $sensor->fetch_assoc();
+                    echo '<div class="col col-md-12">VAC Abrigo:'.$sensor['value']*$config['a3factor'].'</div>';
+
+
+                    $query_analogico = "SELECT device_id, sensor, value 
+                                        from analogicos
+                                        where device_id = $device_id
+                                        and sensor = 1
+                                        ORDER by ts desc 
+                                        LIMIT 0,1";
+                    $sensor = $mysqli->query($query_analogico);
+                    $sensor = $sensor->fetch_assoc();
+                    echo '<div class="col col-md-12">VDC Abrigo:'.$sensor['value']*$config['a1factor'].'</div>';
+
+
+                    $query_analogico = "SELECT device_id, sensor, value 
+                                        from analogicos
+                                        where device_id = $device_id
+                                        and sensor = 2
+                                        ORDER by ts desc 
+                                        LIMIT 0,1";
+                    $sensor = $mysqli->query($query_analogico);
+                    $sensor = $sensor->fetch_assoc();
+
+                    echo '<div class="col col-md-12">VDC Monitor:'.$sensor['value']*$config['a2factor'].'</div>';
                     ?>
-                    <div class="col col-md-12">VAC Abrigo:</div>
-                    <div class="col col-md-12">VDC Abrigo:</div>
-                    <div class="col col-md-12">VDC Monito:</div>
+                    
                 </div>
 
             </td>
             
-            <td scope="col">Estado Paso a Nivel</td>
             <td scope="col">
-                <button class="btn btn-primary">Ver Graficos</button><br>
+                <?php
+                $state = "SELECT *, (d1 * 4 + d2 * 2 + d3 * 1) as binario from registrodigital where device_id = $device_id order by id desc limit 0,1";
+                $state = $mysqli->query($state);
+                $state = $state->fetch_assoc();
+
+                switch ($state['binario']) //convito el binario a estado
+    {
+            case 2:
+            // $estado = 0;
+                  
+                        $observacion = "0: Desocupado+Alto";
+                   
+            $estado = 0;
+            break;
+            case 6:
+            // $estado = 1;
+                    
+                        $observacion = "1: Ocupado+Bajo";
+                    
+            $estado = 1;
+            break;
+            case 7:
+            // $estado = 2;
+                    
+                        $observacion = "2: Barrera Bajando";
+            $estado = 2;
+            break;
+            case 5:
+            // $estado = 3;
+                    
+                        $observacion = "3: Ocupado+Bajo";
+                    
+            $estado = 3;
+            break;
+            case 1:
+            // $estado = 4;
+                
+                    $observacion = "4: Desocupado+Baja";
+
+            $estado = 4;
+            break;
+            case 3:
+            // $estado = 5;
+                        $observacion = "5: Barrera Subiendo";
+                    
+            $estado = 5;
+            break;
+            default:
+            $estado = "null";
+            
+            $observacion = "Anomalía ??";
+            break;
+    }
+    echo $observacion;
+
+                ?>
+
+            </td>
+            <td scope="col">
+                <?php echo '<a href="graficos/?monitor='.$res['device_id'].'"><button class="btn btn-primary" >Ver graficos</button></a>';?>
                  <?php echo '<a href="monitor/monitor.php?monitor='.$res['device_id'].'"><button class="btn btn-success" >Ver Estados</button></a>';?>
                 
             </td>
