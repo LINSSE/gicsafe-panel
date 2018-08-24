@@ -36,6 +36,12 @@
 if (!isset($_GET['device_id'])) 
 {
 ?>
+<h2>Mostrando Registros en Vivo</h2><p class="text-muted"> (actualización automática)</p>
+<form action="filter">
+    <label>Filtrar registos por fecha: </label>
+    <input type="date" name="f" <?php echo 'value="'.date("Y-m-d").'"';?>>
+    <input class="btn btn-success" type="submit" value="Buscar">
+</form>
 <div class="table-responsive">
     <table class="table table-striped table-bordered table-hover table-condensed">
         <thead>

@@ -41,7 +41,7 @@ if (!$resultado = $mysqli->query($sql)) {
     <div class="container-fluid">
         <nav class="navbar navbar-default">
             <div class="container-fluid">
-                <div class="navbar-header"><a class="navbar-brand navbar-link" href="#">GICSAFE</a>
+                <div class="navbar-header"><a class="navbar-brand navbar-link" href="..">GICSAFE</a>
                     <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
                 </div>
                 <div class="collapse navbar-collapse" id="navcol-1">
@@ -115,43 +115,43 @@ $device_id = $res['device_id'];
 
                     <?php
                         
-                    $query_config = "SELECT * from configuraciones where device = $device_id";
-                    $config = $mysqli->query($query_config);
-                    $config = $config->fetch_assoc();                    
+                    // $query_config = "SELECT * from configuraciones where device = $device_id";
+                    // $config = $mysqli->query($query_config);
+                    // $config = $config->fetch_assoc();                    
 
 
-                    $query_analogico = "SELECT device_id, sensor, value 
-                                        from analogicos
-                                        where device_id = $device_id
-                                        and sensor = 3
-                                        ORDER by ts desc 
-                                        LIMIT 0,1";
-                    $sensor = $mysqli->query($query_analogico);
-                    $sensor = $sensor->fetch_assoc();
-                    echo '<div class="col col-md-12">VAC Abrigo:'.$sensor['value']*$config['a3factor'].'</div>';
+                    // $query_analogico = "SELECT device_id, sensor, value 
+                    //                     from analogicos
+                    //                     where device_id = $device_id
+                    //                     and sensor = 3
+                    //                     ORDER by ts desc 
+                    //                     LIMIT 0,1";
+                    // $sensor = $mysqli->query($query_analogico);
+                    // $sensor = $sensor->fetch_assoc();
+                    // echo '<div class="col col-md-12">VAC Abrigo:'.$sensor['value']*$config['a3factor'].'</div>';
 
 
-                    $query_analogico = "SELECT device_id, sensor, value 
-                                        from analogicos
-                                        where device_id = $device_id
-                                        and sensor = 1
-                                        ORDER by ts desc 
-                                        LIMIT 0,1";
-                    $sensor = $mysqli->query($query_analogico);
-                    $sensor = $sensor->fetch_assoc();
-                    echo '<div class="col col-md-12">VDC Abrigo:'.$sensor['value']*$config['a1factor'].'</div>';
+                    // $query_analogico = "SELECT device_id, sensor, value 
+                    //                     from analogicos
+                    //                     where device_id = $device_id
+                    //                     and sensor = 1
+                    //                     ORDER by ts desc 
+                    //                     LIMIT 0,1";
+                    // $sensor = $mysqli->query($query_analogico);
+                    // $sensor = $sensor->fetch_assoc();
+                    // echo '<div class="col col-md-12">VDC Abrigo:'.$sensor['value']*$config['a1factor'].'</div>';
 
 
-                    $query_analogico = "SELECT device_id, sensor, value 
-                                        from analogicos
-                                        where device_id = $device_id
-                                        and sensor = 2
-                                        ORDER by ts desc 
-                                        LIMIT 0,1";
-                    $sensor = $mysqli->query($query_analogico);
-                    $sensor = $sensor->fetch_assoc();
+                    // $query_analogico = "SELECT device_id, sensor, value 
+                    //                     from analogicos
+                    //                     where device_id = $device_id
+                    //                     and sensor = 2
+                    //                     ORDER by ts desc 
+                    //                     LIMIT 0,1";
+                    // $sensor = $mysqli->query($query_analogico);
+                    // $sensor = $sensor->fetch_assoc();
 
-                    echo '<div class="col col-md-12">VDC Monitor:'.$sensor['value']*$config['a2factor'].'</div>';
+                    // echo '<div class="col col-md-12">VDC Monitor:'.$sensor['value']*$config['a2factor'].'</div>';
                     ?>
                     
                 </div>
@@ -229,11 +229,11 @@ $device_id = $res['device_id'];
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript">
-        $(document).ready(function(){
-            setTimeout(function(){
-                window.location.reload(true);
-            },60000)
-        })
+      //  $(document).ready(function(){
+        //    setTimeout(function(){
+          //      window.location.reload(true);
+          //  },60000)
+       // })
     </script>
 </body>
 
